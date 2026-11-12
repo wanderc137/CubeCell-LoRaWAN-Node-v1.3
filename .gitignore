@@ -1,0 +1,32 @@
+PLAN.md
+AUDIT_REPORT.md
+*.cyacd
+*.elf
+*.hex
+*.o
+*.d
+build/
+.cache/
+
+# ── Higiene de publicación (portfolio) ──────────────────────────────
+PLAN.md
+AUDIT_REPORT.md
+*.log
+.env
+.env.*
+!.env.example
+!.env.sample
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Arduino / PlatformIO
+.pio/
+build/
+*.bin
+*.elf
+*.hex
+credentials.h
+secrets.h

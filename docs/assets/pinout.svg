@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 800" width="1160" height="800" role="img" aria-labelledby="pinTitle pinDesc">
+  <title id="pinTitle">Pinout del Heltec CubeCell HTCC-AB01</title>
+  <desc id="pinDesc">Pinout orientativo de la placa HTCC-AB01: pines internos del SX1262 (NSS 35, DIO1 38, RST 47, BUSY 39), header de expansion GPIO0 a GPIO7, UART1 y alimentacion.</desc>
+
+  <defs>
+    <linearGradient id="pcb" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#122A26"/>
+      <stop offset="100%" stop-color="#0C1E1C"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1B2B44"/>
+      <stop offset="100%" stop-color="#131F33"/>
+    </linearGradient>
+    <marker id="pinArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#22D3EE"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1160" height="800" fill="#0B1220"/>
+
+  <text x="40" y="50" font-family="ui-sans-serif, Segoe UI, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#E6EDF7">Pinout &#8212; Heltec CubeCell HTCC-AB01</text>
+  <text x="40" y="74" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" fill="#8FA3BF">ASR6502 + SX1262 &#183; logica 3.3 V &#183; los 4 pines del radio son fijos y no se exponen en el header</text>
+
+  <!-- Placa -->
+  <rect x="70" y="120" width="380" height="580" rx="18" fill="url(#pcb)" stroke="#2F6B5E" stroke-width="2"/>
+  <rect x="86" y="136" width="348" height="548" rx="12" fill="none" stroke="#1E4A42" stroke-width="1" stroke-dasharray="4 5"/>
+
+  <text x="260" y="168" text-anchor="middle" font-family="ui-sans-serif, Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#7FE3C8" letter-spacing="1.2">CUBECELL</text>
+  <text x="260" y="188" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#5E8F85">HTCC-AB01</text>
+
+  <!-- Modulo ASR6502 -->
+  <rect x="140" y="206" width="240" height="150" rx="8" fill="url(#chip)" stroke="#3A5580" stroke-width="1.6"/>
+  <text x="260" y="236" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#E6EDF7">ASR6502</text>
+  <text x="260" y="256" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8FA3BF">Cortex-M0+ 48 MHz</text>
+  <text x="260" y="272" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8FA3BF">128 KB Flash / 16 KB SRAM</text>
+  <rect x="170" y="286" width="180" height="52" rx="6" fill="#0F1A2B" stroke="#2C405F"/>
+  <text x="260" y="306" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#F59E0B">SX1262 (SiP)</text>
+  <text x="260" y="324" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#8FA3BF">150&#8211;960 MHz &#183; +21 dBm</text>
+
+  <!-- Antena -->
+  <g>
+    <rect x="432" y="206" width="44" height="60" rx="6" fill="#16233A" stroke="#3A5580"/>
+    <path d="M454 266 L454 300 M454 300 L432 324 M454 300 L476 324" stroke="#F59E0B" stroke-width="2.4" fill="none"/>
+    <text x="454" y="196" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#F59E0B">U.FL</text>
+  </g>
+
+  <!-- USB -->
+  <rect x="150" y="660" width="80" height="34" rx="6" fill="#1B2B44" stroke="#3A5580"/>
+  <text x="190" y="682" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8FA3BF">USB</text>
+  <rect x="330" y="660" width="86" height="34" rx="6" fill="#1B2B44" stroke="#3A5580"/>
+  <text x="373" y="682" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8FA3BF">LiPo 3.7 V</text>
+
+  <!-- Pines header izquierda -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11">
+    <text x="86" y="396" fill="#7FE3C8" font-weight="700">HEADER A</text>
+    <text x="86" y="414" fill="#5E8F85" font-size="9.5">alimentacion + ADC</text>
+
+    <rect x="70" y="428" width="34" height="20" rx="3" fill="#C7A24A"/>
+    <text x="116" y="443" fill="#E6EDF7">VIN 5 V</text>
+
+    <rect x="70" y="458" width="34" height="20" rx="3" fill="#4A5568"/>
+    <text x="116" y="473" fill="#E6EDF7">GND</text>
+
+    <rect x="70" y="488" width="34" height="20" rx="3" fill="#B85C5C"/>
+    <text x="116" y="503" fill="#E6EDF7">3V3 OUT</text>
+
+    <rect x="70" y="518" width="34" height="20" rx="3" fill="#3E7CB1"/>
+    <text x="116" y="533" fill="#E6EDF7">GPIO0 &#183; ADC</text>
+
+    <rect x="70" y="548" width="34" height="20" rx="3" fill="#3E7CB1"/>
+    <text x="116" y="563" fill="#E6EDF7">GPIO1 &#183; ADC</text>
+
+    <rect x="70" y="578" width="34" height="20" rx="3" fill="#3E7CB1"/>
+    <text x="116" y="593" fill="#E6EDF7">GPIO2 &#183; ADC</text>
+
+    <rect x="70" y="608" width="34" height="20" rx="3" fill="#3E7CB1"/>
+    <text x="116" y="623" fill="#E6EDF7">GPIO3 &#183; ADC</text>
+  </g>
+
+  <!-- Pines header derecha -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11">
+    <text x="360" y="396" fill="#7FE3C8" font-weight="700">HEADER B</text>
+    <text x="360" y="414" fill="#5E8F85" font-size="9.5">digital + UART1</text>
+
+    <rect x="416" y="428" width="34" height="20" rx="3" fill="#3E7CB1"/>
+    <text x="466" y="443" fill="#E6EDF7">GPIO4</text>
+
+    <rect x="416" y="458" width="34" height="20" rx="3" fill="#3E7CB1"/>
+    <text x="466" y="473" fill="#E6EDF7">GPIO5</text>
+
+    <rect x="416" y="488" width="34" height="20" rx="3" fill="#8B6FB8"/>
+    <text x="466" y="503" fill="#E6EDF7">GPIO6 &#183; TX1</text>
+
+    <rect x="416" y="518" width="34" height="20" rx="3" fill="#8B6FB8"/>
+    <text x="466" y="533" fill="#E6EDF7">GPIO7 &#183; RX1</text>
+
+    <rect x="416" y="548" width="34" height="20" rx="3" fill="#8B6FB8"/>
+    <text x="466" y="563" fill="#E6EDF7">RST</text>
+
+    <rect x="416" y="578" width="34" height="20" rx="3" fill="#4A5568"/>
+    <text x="466" y="593" fill="#E6EDF7">GND</text>
+
+    <rect x="416" y="608" width="34" height="20" rx="3" fill="#C7A24A"/>
+    <text x="466" y="623" fill="#E6EDF7">VIN</text>
+  </g>
+
+  <!-- Panel derecho: pines internos -->
+  <g>
+    <rect x="540" y="120" width="590" height="286" rx="14" fill="#111A2B" stroke="#22D3EE" stroke-width="1.6"/>
+    <text x="564" y="152" font-family="ui-sans-serif, Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#22D3EE">Pines internos del SX1262 (fijados en el sketch)</text>
+    <text x="564" y="172" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#8FA3BF">Module mod(35, 38, 47, 39)  &#8594;  (NSS, DIO1, RST, BUSY)</text>
+
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5">
+      <line x1="564" y1="192" x2="1106" y2="192" stroke="#24334D"/>
+      <text x="564" y="212" fill="#8FA3BF" font-size="10" font-weight="700">SENAL</text>
+      <text x="676" y="212" fill="#8FA3BF" font-size="10" font-weight="700">GPIO</text>
+      <text x="760" y="212" fill="#8FA3BF" font-size="10" font-weight="700">PAD</text>
+      <text x="860" y="212" fill="#8FA3BF" font-size="10" font-weight="700">FUNCION</text>
+      <line x1="564" y1="220" x2="1106" y2="220" stroke="#24334D"/>
+
+      <text x="564" y="244" fill="#22D3EE" font-weight="700">NSS</text>
+      <text x="676" y="244" fill="#E6EDF7">35</text>
+      <text x="760" y="244" fill="#E6EDF7">P4_3</text>
+      <text x="860" y="244" fill="#C7D4E6">Chip select SPI</text>
+
+      <text x="564" y="274" fill="#22D3EE" font-weight="700">DIO1</text>
+      <text x="676" y="274" fill="#E6EDF7">38</text>
+      <text x="760" y="274" fill="#E6EDF7">P4_6</text>
+      <text x="860" y="274" fill="#C7D4E6">IRQ de radio (TxDone/RxDone)</text>
+
+      <text x="564" y="304" fill="#22D3EE" font-weight="700">RESET</text>
+      <text x="676" y="304" fill="#E6EDF7">47</text>
+      <text x="760" y="304" fill="#E6EDF7">P5_7</text>
+      <text x="860" y="304" fill="#C7D4E6">Reset del SX1262</text>
+
+      <text x="564" y="334" fill="#22D3EE" font-weight="700">BUSY</text>
+      <text x="676" y="334" fill="#E6EDF7">39</text>
+      <text x="760" y="334" fill="#E6EDF7">P4_7</text>
+      <text x="860" y="334" fill="#C7D4E6">Estado interno del radio</text>
+    </g>
+
+    <rect x="564" y="354" width="542" height="36" rx="6" fill="#0E2A33" stroke="#155E63"/>
+    <text x="576" y="377" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#22D3EE">SCK, MISO y MOSI no se declaran: los gestiona el core CubeCell.</text>
+
+    <text x="564" y="406" font-family="ui-sans-serif, Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#64748B">No reutilices estos GPIO en el sketch: el radio deja de responder.</text>
+  </g>
+
+  <!-- Panel derecho: notas -->
+  <g>
+    <rect x="540" y="426" width="590" height="274" rx="14" fill="#111A2B" stroke="#24334D" stroke-width="1.4"/>
+    <text x="564" y="458" font-family="ui-sans-serif, Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#E6EDF7">Notas de uso</text>
+
+    <g font-family="ui-sans-serif, Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#C7D4E6">
+      <text x="564" y="486">&#8226; Todo el header es 3.3 V. Un divisor o level shifter es obligatorio con 5 V.</text>
+      <text x="564" y="510">&#8226; GPIO6/GPIO7 son UART1 (TX/RX). El firmware usa USB-CDC, no UART1.</text>
+      <text x="564" y="534">&#8226; GPIO0&#8211;GPIO3 tienen ADC de 12 bits; el rango util es 0&#8211;3.3 V.</text>
+      <text x="564" y="558">&#8226; GND comun entre CubeCell, ESP32 y cualquier periferico.</text>
+      <text x="564" y="582">&#8226; La antena U.FL debe estar conectada antes de energizar el radio.</text>
+      <text x="564" y="606">&#8226; No inyectes 5 V en 3V3 ni alimentes por USB y VIN a la vez.</text>
+    </g>
+
+    <rect x="564" y="622" width="542" height="58" rx="8" fill="#1A1408" stroke="#4A3410"/>
+    <text x="576" y="643" font-family="ui-sans-serif, Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#F59E0B">DISPOSICION ORIENTATIVA</text>
+    <text x="576" y="661" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#C7A24A">El orden fisico del header cambia entre revisiones: confirma con el pinout oficial.</text>
+
+    <text x="564" y="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#64748B">Este nodo solo necesita los 4 pines internos + USB + antena.</text>
+  </g>
+
+  <!-- Leyenda inferior -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5">
+    <rect x="70" y="718" width="14" height="14" rx="3" fill="#C7A24A"/>
+    <text x="92" y="730" fill="#8FA3BF">alimentacion</text>
+    <rect x="200" y="718" width="14" height="14" rx="3" fill="#4A5568"/>
+    <text x="222" y="730" fill="#8FA3BF">GND</text>
+    <rect x="290" y="718" width="14" height="14" rx="3" fill="#B85C5C"/>
+    <text x="312" y="730" fill="#8FA3BF">3V3</text>
+    <rect x="380" y="718" width="14" height="14" rx="3" fill="#3E7CB1"/>
+    <text x="402" y="730" fill="#8FA3BF">GPIO / ADC</text>
+    <rect x="510" y="718" width="14" height="14" rx="3" fill="#8B6FB8"/>
+    <text x="532" y="730" fill="#8FA3BF">UART1 / RST</text>
+    <rect x="660" y="718" width="14" height="14" rx="3" fill="#22D3EE"/>
+    <text x="682" y="730" fill="#8FA3BF">SPI interno del radio</text>
+  </g>
+</svg>

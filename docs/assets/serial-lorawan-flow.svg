@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" width="1200" height="820" role="img" aria-labelledby="flowTitle flowDesc">
+  <title id="flowTitle">Flujo serial a LoRaWAN y vuelta del downlink</title>
+  <desc id="flowDesc">Diagrama de secuencia del bridge: el operador escribe HEX por serial, el firmware parsea, transmite por LoRaWAN, recibe el downlink en la ventana RX1 o RX2 y lo imprime por serial.</desc>
+
+  <defs>
+    <marker id="seqCyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#22D3EE"/>
+    </marker>
+    <marker id="seqAmber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#F59E0B"/>
+    </marker>
+    <marker id="seqViolet" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#A78BFA"/>
+    </marker>
+    <marker id="seqGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#34D399"/>
+    </marker>
+    <marker id="seqMuted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8FA3BF"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="820" fill="#0B1220"/>
+
+  <text x="40" y="50" font-family="ui-sans-serif, Segoe UI, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#E6EDF7">Flujo completo: del serial al aire y de vuelta</text>
+  <text x="40" y="74" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" fill="#8FA3BF">Un uplink abre la ventana RX. Sin uplink no hay downlink posible (Clase A).</text>
+
+  <!-- Lifelines -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <rect x="40" y="104" width="190" height="56" rx="9" fill="#111A2B" stroke="#24334D"/>
+    <text x="135" y="127" text-anchor="middle" font-size="12.5" font-weight="700" fill="#E6EDF7">Operador</text>
+    <text x="135" y="146" text-anchor="middle" font-size="10.5" fill="#8FA3BF">cutecom / ESP32</text>
+    <line x1="135" y1="160" x2="135" y2="720" stroke="#24334D" stroke-width="1.4" stroke-dasharray="5 6"/>
+
+    <rect x="280" y="104" width="220" height="56" rx="9" fill="#0E2A33" stroke="#155E63"/>
+    <text x="390" y="127" text-anchor="middle" font-size="12.5" font-weight="700" fill="#22D3EE">Firmware CubeCell</text>
+    <text x="390" y="146" text-anchor="middle" font-size="10.5" fill="#8FA3BF">parser + loop()</text>
+    <line x1="390" y1="160" x2="390" y2="720" stroke="#155E63" stroke-width="1.4" stroke-dasharray="5 6"/>
+
+    <rect x="550" y="104" width="190" height="56" rx="9" fill="#111A2B" stroke="#3B2A12"/>
+    <text x="645" y="127" text-anchor="middle" font-size="12.5" font-weight="700" fill="#F59E0B">SX1262</text>
+    <text x="645" y="146" text-anchor="middle" font-size="10.5" fill="#8FA3BF">radio / SPI</text>
+    <line x1="645" y1="160" x2="645" y2="720" stroke="#3B2A12" stroke-width="1.4" stroke-dasharray="5 6"/>
+
+    <rect x="790" y="104" width="190" height="56" rx="9" fill="#111A2B" stroke="#3B2A12"/>
+    <text x="885" y="127" text-anchor="middle" font-size="12.5" font-weight="700" fill="#F59E0B">UG56 + NS</text>
+    <text x="885" y="146" text-anchor="middle" font-size="10.5" fill="#8FA3BF">gateway / cola DL</text>
+    <line x1="885" y1="160" x2="885" y2="720" stroke="#3B2A12" stroke-width="1.4" stroke-dasharray="5 6"/>
+
+    <rect x="1030" y="104" width="130" height="56" rx="9" fill="#111A2B" stroke="#2E2A4D"/>
+    <text x="1095" y="127" text-anchor="middle" font-size="12.5" font-weight="700" fill="#A78BFA">App</text>
+    <text x="1095" y="146" text-anchor="middle" font-size="10.5" fill="#8FA3BF">web / MQTT</text>
+    <line x1="1095" y1="160" x2="1095" y2="720" stroke="#2E2A4D" stroke-width="1.4" stroke-dasharray="5 6"/>
+  </g>
+
+  <!-- 1 -->
+  <g>
+    <line x1="135" y1="196" x2="380" y2="196" stroke="#22D3EE" stroke-width="2.2" marker-end="url(#seqCyan)"/>
+    <text x="258" y="188" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" fill="#22D3EE">"01 02 03" + Enter</text>
+    <text x="258" y="216" text-anchor="middle" font-family="ui-sans-serif, Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#64748B">linea completa, hasta 255 caracteres</text>
+  </g>
+
+  <!-- 2 self -->
+  <g>
+    <path d="M390 240 L470 240 L470 268 L400 268" fill="none" stroke="#22D3EE" stroke-width="1.8" marker-end="url(#seqCyan)"/>
+    <text x="480" y="252" font-family="ui-sans-serif, Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#C7D4E6">parseHexString()</text>
+    <text x="480" y="268" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#64748B">3 bytes &#183; rechaza impar</text>
+  </g>
+
+  <!-- 3 -->
+  <g>
+    <line x1="400" y1="308" x2="635" y2="308" stroke="#22D3EE" stroke-width="2.2" marker-end="url(#seqCyan)"/>
+    <text x="518" y="300" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#22D3EE">sendReceive(fPort 1)</text>
+  </g>
+
+  <!-- 4 -->
+  <g>
+    <line x1="645" y1="356" x2="875" y2="356" stroke="#F59E0B" stroke-width="2.4" marker-end="url(#seqAmber)"/>
+    <text x="760" y="348" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#F59E0B">uplink 916.8&#8211;918.2 MHz</text>
+    <text x="760" y="374" text-anchor="middle" font-family="ui-sans-serif, Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#64748B">DR0&#8211;DR5 segun ADR</text>
+  </g>
+
+  <!-- 5 -->
+  <g>
+    <line x1="885" y1="404" x2="1085" y2="404" stroke="#A78BFA" stroke-width="2.2" marker-end="url(#seqViolet)"/>
+    <text x="985" y="396" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#A78BFA">publish uplink</text>
+    <text x="985" y="422" text-anchor="middle" font-family="ui-sans-serif, Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#64748B">payload HEX en JSON</text>
+  </g>
+
+  <!-- 6 -->
+  <g>
+    <line x1="1085" y1="462" x2="895" y2="462" stroke="#A78BFA" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#seqViolet)"/>
+    <text x="990" y="454" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#A78BFA">downlink 686F6C61</text>
+    <text x="990" y="480" text-anchor="middle" font-family="ui-sans-serif, Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#64748B">queda encolado</text>
+  </g>
+
+  <!-- RX window band -->
+  <rect x="560" y="506" width="660" height="96" rx="10" fill="#1A1408" stroke="#4A3410" stroke-dasharray="4 4"/>
+  <text x="576" y="528" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#F59E0B">VENTANAS RX (Clase A)</text>
+  <text x="576" y="548" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#8FA3BF">RX1: mismo canal / 923.3&#8211;927.5 MHz &#183; RX2: 923.3 MHz SF12BW500</text>
+  <text x="576" y="566" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#8FA3BF">El NS debe transmitir dentro de la ventana o el downlink se pierde.</text>
+  <text x="576" y="590" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#22D3EE">Latencia percibida: 0&#8211;30 s (heartbeat)</text>
+
+  <!-- 7 -->
+  <g>
+    <line x1="880" y1="620" x2="655" y2="620" stroke="#F59E0B" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#seqAmber)"/>
+    <text x="768" y="612" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#F59E0B">downlink en RX1/RX2</text>
+  </g>
+
+  <!-- 8 -->
+  <g>
+    <line x1="635" y1="660" x2="400" y2="660" stroke="#34D399" stroke-width="2.2" marker-end="url(#seqGreen)"/>
+    <text x="518" y="652" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#34D399">retorno 1 o 2 + downlinkLen</text>
+    <text x="518" y="676" text-anchor="middle" font-family="ui-sans-serif, Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#64748B">v1.3b: usar downlinkLen, no el retorno</text>
+  </g>
+
+  <!-- 9 -->
+  <g>
+    <line x1="380" y1="708" x2="145" y2="708" stroke="#22D3EE" stroke-width="2.2" marker-end="url(#seqCyan)"/>
+    <text x="262" y="700" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#22D3EE">[DOWNLINK] 68 6F 6C 61 &#8594; "hola"</text>
+  </g>
+
+  <!-- Nota -->
+  <g>
+    <rect x="40" y="748" width="1120" height="46" rx="9" fill="#0E1626" stroke="#1D2B42"/>
+    <text x="60" y="776" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#8FA3BF">Cada 30 s sin trafico el firmware envia 0xBB para reabrir la ventana. Ese heartbeat es tambien el unico mecanismo de recepcion en reposo.</text>
+  </g>
+</svg>
