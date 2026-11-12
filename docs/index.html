@@ -258,7 +258,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
   .section{padding:72px 0}
 }
 </style>
-</head>
+<link rel="stylesheet" href="assets/community.css?v=5"></head>
 <body style="--accent:#0B1220;--accent2:#22D3EE">
 <div class="grid-overlay"></div>
 <div class="glow one"></div>
@@ -275,6 +275,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
       <a href="#como">Cómo funciona</a>
       <a href="#arquitectura">Arquitectura</a>
       <a href="#docs">Documentación</a>
+      <a href="#comunidad">Comunidad</a>
       <a class="btn btn-ghost" style="padding:9px 15px" href="https://github.com/wanderc137/CubeCell-LoRaWAN-Node-v1.3" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </div>
@@ -389,8 +390,8 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
   <div class="wrap">
     <div class="cta-card reveal">
       <div class="kicker" style="justify-content:center">Portfolio · 21 proyectos</div>
-      <h2>¿Construimos algo así?</h2>
-      <p>¿Necesitás llevar datos de un ESP32 a LoRaWAN sin reescribir el proyecto? Este puente es el atajo.</p>
+      <h2>¿Te animás?</h2>
+      <p>Usá esto como base y referencia para conectar un equipo serial a LoRaWAN AU915, con downlinks y heartbeat. Este proyecto es la prueba de que se puede hacer con componentes reales.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://wanderc137.github.io/" target="_blank" rel="noopener">Ver todos los proyectos <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn btn-ghost" href="https://github.com/wanderc137/CubeCell-LoRaWAN-Node-v1.3" target="_blank" rel="noopener">Explorar el código</a>
@@ -442,5 +443,8 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 })();
 </script>
+
+<script>window.PORTFOLIO_COMMUNITY = {"account": "wanderc137", "repo": "CubeCell-LoRaWAN-Node-v1.3", "coinNamespace": "wanderc137-cubecell-lorawan-node-v1-3-coins-v1", "faqs": [{"q": "¿Qué placa usa?", "a": "Heltec HTCC-AB01 con ASR6502 + SX1262; también se documenta el pinout y la antena."}, {"q": "¿Qué región configura?", "a": "AU915, sub-banda 2, OTAA Clase A."}, {"q": "¿Qué hace exactamente?", "a": "Puente bidireccional Serial ↔ LoRaWAN: recibe HEX por serial, lo envía por LoRaWAN y entrega downlinks al serial."}, {"q": "¿Qué payload maneja?", "a": "51 B por mensaje, +21 dBm y heartbeat <code>BB</code> cada 30 s."}, {"q": "¿Las credenciales son reales?", "a": "No. joinEui/devEui y appKey/nwkKey están en cero/placeholder; las credenciales reales no se publican."}]};</script>
+<script src="assets/community.js?v=5" defer></script>
 </body>
 </html>
