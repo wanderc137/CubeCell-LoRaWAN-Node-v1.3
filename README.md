@@ -773,6 +773,57 @@ Las fuentes completas están en [`docs/REFERENCES.md`](docs/REFERENCES.md). Las 
 
 ---
 
+## Ficha de evaluación
+
+**Madurez global: 3.8/5**
+
+| Criterio | Nota | Evidencia |
+|---|---:|---|
+| Madurez | 3/5 | v1.3b validada en hardware real con UG56 (join, uplink, downlink y 51 B), pero sin persistencia de sesión ni watchdog. |
+| Reproducibilidad | 3/5 | RadioLib 7.7.1 y AU915 FSB 2 fijados; el resultado depende del servidor de red y no hay pruebas automatizadas. |
+| Documentación | 5/5 | README de 794 líneas, datasheet, developer y bitácora con tablas de airtime y cronología v1.1–v1.3. |
+| Honestidad de límites | 5/5 | Reconoce 2.880 uplinks/día, claves embebidas, bloqueo de hasta 2,5 s y falta de NVM/OTA. |
+| Valor demostrativo | 4/5 | Puente serie–LoRaWAN mínimo y verificable, útil como plantilla para integrar equipos legacy. |
+| Facilidad de despliegue | 3/5 | Requiere placa HTCC-AB01, keys OTAA en el .ino y un NS con FSB 2; el puerto TTL exige cambiar a Serial1. |
+
+Sirve para conectar un equipo con salida serie a LoRaWAN sin desarrollar un nodo de sensores, y para estudiar un join OTAA estable en AU915. La falta de persistencia de sesión y el heartbeat fijo son las limitaciones que más afectan una instalación real.
+
+## Lo que no funcionó
+
+### v1.1 · join OTAA — Join intermitente con el stack de Heltec
+
+Los timers del core ASR6502 se escalaban ~100× y las ventanas RX no coincidían, así que el join fallaba de forma aleatoria. Se descartaron credenciales, FSB, antena y cobertura antes de identificar el problema.
+
+### v1.2 · migración — Join reproducible, pero con busy-wait
+
+La migración a RadioLib y a un sleep basado en millis() corrigió el join, a costa de 1–2 s de espera activa por ciclo. Se fijó RadioLib 7.7.1 y scanGuard = 200 para estabilizar la ventana.
+
+### v1.3 · downlinks — Downlinks multi-byte truncados a 1 byte
+
+Se usaba el retorno de sendReceive() como longitud, pero ese valor indica la ventana RX (1 o 2). En v1.3b se pasó un size_t downlinkLen de entrada y salida y se imprimieron los bytes completos.
+
+### v1.3 · sesión — DevNonce repetido tras cada reinicio
+
+Sin persistencia de sesión, cada arranque hace un join nuevo y el servidor puede responder -1116 NO_JOIN_ACCEPT por nonce repetido. La solución documentada es resetear la sesión en el NS o migrar a ABP/NVM, fuera del alcance del repo.
+
+## Preguntas típicas
+
+**¿Qué hace el nodo?**
+
+Convierte líneas HEX recibidas por Serial en uplinks LoRaWAN y muestra los downlinks en hexadecimal y texto. También envía un heartbeat de 0xBB cada 30 s.
+
+**¿Qué no hace?**
+
+No persiste sesión ni DevNonce, no usa deep sleep, no envía uplinks confirmados y no filtra downlinks MAC. No es un nodo de sensores ni un gateway.
+
+**¿Cómo se despliega?**
+
+Se compila con el core de CubeCell y RadioLib 7.7.1, se cargan las claves OTAA en el .ino y se une a un NS AU915 FSB 2. La aplicación recibe los uplinks en fPort 1 y puede enviar downlinks por web o MQTT.
+
+**¿Qué se puede reutilizar?**
+
+El parser HEX con timeout, el patrón de re-join antes de transmitir, la impresión de downlinks y la migración de un stack con timers roto a RadioLib.
+
 ## Licencia
 
 MIT. Ver [`LICENSE`](LICENSE).
